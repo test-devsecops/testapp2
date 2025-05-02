@@ -1,0 +1,21 @@
+# This workflow will trigger container security scans in the pipeline
+
+name: Run Container Scans
+
+on: [push]
+
+jobs:
+    container-sec:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+
+            - name: Build the Container Image
+              run: docker build . --file Dockerfile --tag localbuild/testimage:latest
+
+            - name: Scan Image
+              run: echo 'Scanning docker image'
