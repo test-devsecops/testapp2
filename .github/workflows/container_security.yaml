@@ -17,9 +17,6 @@ jobs:
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v2
 
-            - name: Build the Container Image
-              run: docker build . --file Dockerfile --tag localbuild/testimage:latest
-
             - name: Scan Image with Checkmarx
               uses: checkmarx/ast-github-action@main
               with:
@@ -28,4 +25,5 @@ jobs:
                   base_uri: ${{ vars.CX_TENANT_URL }}
                   cx_client_id: ${{ vars.CX_CLIENT_ID }}
                   cx_client_secret: ${{ secrets.CX_TOKEN }}
+                  additional_params: "--scan-types container-security"
         continue-on-error: true
