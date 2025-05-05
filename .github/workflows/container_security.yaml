@@ -26,4 +26,5 @@ jobs:
                   cx_client_id: ${{ vars.CX_CLIENT_ID }}
                   cx_client_secret: ${{ secrets.CX_TOKEN }}
                   additional_params: "--scan-types container-security"
+                  branch: release/prod
         continue-on-error: true
