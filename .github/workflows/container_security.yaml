@@ -2,7 +2,10 @@
 
 name: Run Container Scans
 
-on: [push]
+on: 
+    push:
+        branches:
+          - release/prod
 
 jobs:
     container-sec:
@@ -17,5 +20,12 @@ jobs:
             - name: Build the Container Image
               run: docker build . --file Dockerfile --tag localbuild/testimage:latest
 
-            - name: Scan Image
-              run: echo 'Scanning docker image'
+            - name: Scan Image with Checkmarx
+              uses: checkmarx/ast-github-action@main
+              with:
+                  project_name: test
+                  cx_tenant: ${{ vars.CX_TENANT_NAME }}
+                  base_uri: ${{ vars.CX_TENANT_URL }}
+                  cx_client_id: ${{ vars.CX_CLIENT_ID }}
+                  cx_client_secret: ${{ secrets.CX_TOKEN }}
+        continue-on-error: true
