@@ -50,6 +50,6 @@ jobs:
                   --tenant "${{vars.CX_TENANT_NAME}}" \
                   --client-id "${{vars.CX_CLIENT_ID}}" \
                   --client-secret "${{secrets.CX_TOKEN}}" \
-                  --scan-types "sca" \
+                  --scan-types sca \
                   --file-filter *.jar
         continue-on-error: false
