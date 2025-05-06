@@ -34,6 +34,13 @@ jobs:
                   chmod +x cx
                   sudo mv cx /usr/local/bin/
 
+            - name: Print Variables and secrets
+              run: |
+                  echo "BASE URI = ${{vars.CX_TENANT_URL}}"
+                  echo "TENANT = ${{vars.CX_TENANT_NAME}}"
+                  echo "CLIENT ID = ${{vars.CX_CLIENT_ID}}"
+                  echo "TOKEN = ${{secrets.CX_TOKEN}}"
+            
             - name: Run CX scan
               run: |
                   cx scan create -s ./test \
