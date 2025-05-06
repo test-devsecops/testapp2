@@ -1,0 +1,25 @@
+# This workflow will trigger SCA scans for 3rd party JAR files from the artifactory
+
+name: Run 3rd party SCA scans
+
+on: 
+    push:
+        branches:
+          - release/prod
+
+jobs:
+    third-party-scan:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Pull file from repository
+              uses: actions/checkout@v4
+              with:
+                  repository: kbase/jars
+                  ref: master
+                  path: lib/jars/amazon/V1/ion-java-1.4.0.jar
+              # run: |
+              #     #!/bin/sh
+              #     REPO_SRC=https://github.com/kbase/jars.git
+
+            - name: List files
+              run: ls -al
