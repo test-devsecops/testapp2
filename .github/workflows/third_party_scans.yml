@@ -21,5 +21,28 @@ jobs:
               #     #!/bin/sh
               #     REPO_SRC=https://github.com/kbase/jars.git
 
-            - name: List files
-              run: ls -al
+            - name: Move file to root folder
+              run: |
+                  mkdir test
+                  mv ./lib/jars/amazon/V1/ion-java-1.4.0.jar ./test
+                  ls -al ./test
+            
+            - name: Install CX CLI
+              run: |
+                  wget https://github.com/Checkmarx/ast-cli/releases/download/2.3.20/ast-cli_2.3.20_linux_arm64.tar.gz
+                  tar -xzvf ast-cli_2.3.20_linux_x64.tar.gz
+                  chmod +x cx
+                  sudo mv cx /usr/local/bin/
+
+            - name: Run CX scan
+              run: |
+                  cx scan create -s ./test \
+                  --project-name "test" \
+                  --branch "$(echo ${{ github.head_ref || github.ref }} | sed -e 's#refs/heads/##g')" \
+                  --base-uri "${{vars.CX_TENANT_URL}}" \
+                  --tenant "${{vars.CX_TENANT_NAME}}" \
+                  --client-id "${{vars.CX_CLIENT_ID}}" \
+                  --client-secret "${{secrets.CX_TOKEN}}" \
+                  --scan-types "sca" \
+                  --file-filter *.jar
+        continue-on-error: false
