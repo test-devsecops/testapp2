@@ -5,7 +5,8 @@ name: Run Container Scans
 on: 
     push:
         branches:
-          - release/prod
+          #- release/prod
+          - main
 
 jobs:
     container-sec:
