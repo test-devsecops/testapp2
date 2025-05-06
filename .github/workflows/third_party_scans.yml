@@ -49,7 +49,7 @@ jobs:
                   --base-uri "${{vars.CX_TENANT_URL}}" \
                   --tenant "${{vars.CX_TENANT_NAME}}" \
                   --client-id "${{vars.CX_CLIENT_ID}}" \
-                  --client-secret "${{secrets.CX_TOKEN}}" \
+                  --client-secret "eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5MzUzYmQ3Mi0yYWRjLTQwNzctOWYxMy0yOTY2Mzc2Yzk2MWUifQ.eyJpYXQiOjE3NDIyNjEyNDMsImp0aSI6IjM1MGQ0YzkwLWZkZGQtNGM1YS1hNGM1LWFiODBmNmE4ZmQxNCIsImlzcyI6Imh0dHBzOi8vZXUtMi5pYW0uY2hlY2ttYXJ4Lm5ldC9hdXRoL3JlYWxtcy9wcnVkZW50aWFsLW9uZSIsImF1ZCI6Imh0dHBzOi8vZXUtMi5pYW0uY2hlY2ttYXJ4Lm5ldC9hdXRoL3JlYWxtcy9wcnVkZW50aWFsLW9uZSIsInN1YiI6ImE4MjM1NmRlLWU2YTgtNDc4Ny04NGVlLTc2ZTE2NmUzYzc1YiIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJhc3QtYXBwIiwic2lkIjoiZGJmMjUyNGUtMTNlZi00MDBkLWFlNGMtYjVkNWE4ODIwNGQ4Iiwic2NvcGUiOiJyb2xlcyBpYW0tYXBpIGFzdC1hcGkgZW1haWwgcHJvZmlsZSBvZmZsaW5lX2FjY2VzcyJ9.D8YRo4rfDKWOYJJE4xVvRwXJ69hRE5WdooaCEBKgzu4-ENSoObMxgi7EWQYaASDhT6HWgDadjvQsTG2zl_fsEQ" \
                   --scan-types sca \
                   --file-filter *.jar
         continue-on-error: false
