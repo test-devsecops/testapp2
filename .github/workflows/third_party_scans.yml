@@ -29,8 +29,8 @@ jobs:
             
             - name: Install CX CLI
               run: |
-                  wget https://github.com/Checkmarx/ast-cli/releases/download/2.3.20/ast-cli_2.3.20_linux_x64.tar.gz
-                  tar -xzvf ast-cli_2.3.20_linux_x64.tar.gz
+                  wget https://github.com/Checkmarx/ast-cli/releases/download/2.3.14/ast-cli_2.3.14_linux_x64.tar.gz
+                  tar -xzvf ast-cli_2.3.14_linux_x64.tar.gz
                   chmod +x cx
                   sudo mv cx /usr/local/bin/
 
@@ -38,8 +38,8 @@ jobs:
               run: |
                   echo "BASE URI = ${{vars.CX_TENANT_URL}}"
                   echo "TENANT = ${{vars.CX_TENANT_NAME}}"
-                  echo "CLIENT ID = ${{vars.CX_CLIENT_ID}}"
-                  echo "TOKEN = ${{secrets.CX_TOKEN}}"
+                  echo "CLIENT ID = ${{vars.CX_GHA_CLIENT}}"
+                  echo "TOKEN = ${{secrets.CX_CLIENT_SECRET}}"
             
             - name: Run CX scan
               run: |
@@ -49,7 +49,7 @@ jobs:
                   --base-uri "${{vars.CX_TENANT_URL}}" \
                   --tenant "${{vars.CX_TENANT_NAME}}" \
                   --client-id "${{vars.CX_CLIENT_ID}}" \
-                  --client-secret "${{secrets.CX_TOKEN}}" \
+                  --client-secret "${{secrets.CX_CLIENT_SECRET}}" \
                   --scan-types sca \
                   --file-filter *.jar
         continue-on-error: false
