@@ -48,8 +48,7 @@ jobs:
                   --branch "$(echo ${{ github.head_ref || github.ref }} | sed -e 's#refs/heads/##g')" \
                   --base-uri "${{vars.CX_TENANT_URL}}" \
                   --tenant "${{vars.CX_TENANT_NAME}}" \
-                  --client-id "${{vars.CX_CLIENT_ID}}" \
-                  --client-secret "${{secrets.CX_CLIENT_SECRET}}" \
+                  --apikey "${{secrets.CX_TOKEN}}" \
                   --scan-types sca \
                   --file-filter *.jar
         continue-on-error: false
