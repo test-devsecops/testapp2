@@ -49,6 +49,6 @@ jobs:
                   --base-uri "${{vars.CX_TENANT_URL}}" \
                   --tenant "${{vars.CX_TENANT_NAME}}" \
                   --apikey "${{secrets.CX_TOKEN}}" \
-                  --scan-types sca \
-                  --file-filter *.jar
+                  --scan-types sca,sast
+                  # --file-filter *.jar
         continue-on-error: false
